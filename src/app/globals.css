@@ -1,3 +1,44 @@
+/* Animasi Sidebar dan Dropdown */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dropdownScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease;
+}
+.animate-dropdownScale {
+  animation: dropdownScale 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
 @import "tailwindcss";
 
 :root {
