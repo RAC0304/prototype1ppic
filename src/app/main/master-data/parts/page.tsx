@@ -108,7 +108,6 @@ export default function PartsPage() {
         <div className="bg-white rounded-xl shadow-md p-6">
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center gap-2">
-              <span className="text-green-500">➕</span>
               <button className="bg-green-500 hover:bg-green-600 transition text-white px-4 py-2 rounded-lg font-semibold shadow">
                 Tambah Part Baru
               </button>

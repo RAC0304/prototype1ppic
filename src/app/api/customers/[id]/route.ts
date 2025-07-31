@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { NextRequest, NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
 export async function GET(
   request: NextRequest,
@@ -7,18 +7,21 @@ export async function GET(
 ) {
   try {
     const { data, error } = await supabase
-      .from('customers')
-      .select('*')
-      .eq('id', params.id)
-      .single()
+      .from("customers")
+      .select("*")
+      .eq("id", params.id)
+      .single();
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 404 })
+      return NextResponse.json({ error: error.message }, { status: 404 });
     }
 
-    return NextResponse.json(data)
-  } catch (error) {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json(data);
+  } catch {
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
 
@@ -27,21 +30,24 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    const body = await request.json()
-    
+    const body = await request.json();
+
     const { data, error } = await supabase
-      .from('customers')
+      .from("customers")
       .update(body)
-      .eq('id', params.id)
-      .select()
+      .eq("id", params.id)
+      .select();
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 })
+      return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
-    return NextResponse.json(data[0])
-  } catch (error) {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json(data[0]);
+  } catch {
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
 
@@ -52,17 +58,20 @@ export async function DELETE(
   try {
     // Soft delete by updating status to 'Inactive'
     const { data, error } = await supabase
-      .from('customers')
-      .update({ status: 'Inactive' })
-      .eq('id', params.id)
-      .select()
+      .from("customers")
+      .update({ status: "Inactive" })
+      .eq("id", params.id)
+      .select();
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 })
+      return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
-    return NextResponse.json(data[0])
-  } catch (error) {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json(data[0]);
+  } catch {
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

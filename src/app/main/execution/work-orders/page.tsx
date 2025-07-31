@@ -42,8 +42,8 @@ export default function WorkOrdersPage() {
     quantity_ordered: 0,
     start_date: "",
     due_date: "",
-    status: "Planned" as const,
-    priority: "Medium" as const,
+    status: "Planned" as WorkOrder["status"],
+    priority: "Medium" as WorkOrder["priority"],
     sales_order_number: "",
     notes: "",
   });
@@ -147,8 +147,8 @@ export default function WorkOrdersPage() {
       quantity_ordered: workOrder.quantity_ordered,
       start_date: workOrder.start_date,
       due_date: workOrder.due_date,
-      status: workOrder.status,
-      priority: workOrder.priority,
+      status: workOrder.status as WorkOrder["status"],
+      priority: workOrder.priority as WorkOrder["priority"],
       sales_order_number: workOrder.sales_order_number || "",
       notes: workOrder.notes || "",
     });
@@ -165,7 +165,44 @@ export default function WorkOrdersPage() {
     try {
       // In a real implementation, this would call the work order API
       console.log("Saving work order:", formData);
+      if (editingWorkOrder) {
+        // Edit existing work order
+        setWorkOrders((prev) =>
+          prev.map((wo) =>
+            wo.id === editingWorkOrder.id ? { ...wo, ...formData } : wo
+          )
+        );
+      } else {
+        // Add new work order
+        setWorkOrders((prev) => [
+          ...prev,
+          {
+            ...formData,
+            id: (prev.length + 1).toString(),
+            quantity_produced: 0,
+            part_number:
+              formData.part_id === "1"
+                ? "FG-001"
+                : formData.part_id === "2"
+                ? "FG-002"
+                : formData.part_id === "3"
+                ? "FG-003"
+                : undefined,
+            part_name:
+              formData.part_id === "1"
+                ? "Product A"
+                : formData.part_id === "2"
+                ? "Product B"
+                : formData.part_id === "3"
+                ? "Product C"
+                : undefined,
+            uom: "PCS",
+            created_date: new Date().toISOString().split("T")[0],
+          },
+        ]);
+      }
       setShowModal(false);
+      setEditingWorkOrder(null);
       // fetchWorkOrders(); // Refresh data
     } catch (err) {
       setError("Failed to save work order");
@@ -578,7 +615,7 @@ export default function WorkOrdersPage() {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          priority: e.target.value as any,
+                          priority: e.target.value as WorkOrder["priority"],
                         })
                       }
                     >
@@ -598,7 +635,7 @@ export default function WorkOrdersPage() {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          status: e.target.value as any,
+                          status: e.target.value as WorkOrder["status"],
                         })
                       }
                     >
