@@ -30,6 +30,35 @@ export default function RoutingsPage() {
     },
   ]);
 
+  const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    order: 10,
+    processName: "",
+    workStation: "",
+    specificMachine: "",
+    capacityPerHour: 1,
+  });
+
+  const handleAddNew = () => {
+    setFormData({
+      order:
+        routingSteps.length > 0
+          ? routingSteps[routingSteps.length - 1].order + 10
+          : 10,
+      processName: "",
+      workStation: "",
+      specificMachine: "",
+      capacityPerHour: 1,
+    });
+    setShowModal(true);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setRoutingSteps([...routingSteps, { ...formData }]);
+    setShowModal(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
       <div className="max-w-6xl mx-auto">
@@ -106,7 +135,10 @@ export default function RoutingsPage() {
                 </p>
 
                 <div className="flex gap-3 mb-4">
-                  <button className="bg-blue-600 hover:bg-blue-700 transition text-white px-4 py-2 rounded-lg font-semibold shadow">
+                  <button
+                    className="bg-blue-600 hover:bg-blue-700 transition text-white px-4 py-2 rounded-lg font-semibold shadow"
+                    onClick={handleAddNew}
+                  >
                     Tambah Langkah Proses
                   </button>
                 </div>
@@ -180,6 +212,110 @@ export default function RoutingsPage() {
           </div>
         </div>
       </div>
+
+      {/* Modal Form Tambah Langkah Proses */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 px-2 sm:px-0">
+          <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 w-full max-w-md sm:max-w-xl border border-gray-200 relative">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
+              Tambah Langkah Proses
+            </h3>
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    No. Urut *
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.order}
+                    onChange={(e) =>
+                      setFormData({ ...formData, order: Number(e.target.value) })
+                    }
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Nama Proses *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.processName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, processName: e.target.value })
+                    }
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Stasiun Kerja *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.workStation}
+                    onChange={(e) =>
+                      setFormData({ ...formData, workStation: e.target.value })
+                    }
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Mesin Spesifik
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.specificMachine}
+                    onChange={(e) =>
+                      setFormData({ ...formData, specificMachine: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Kapasitas per Jam *
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.capacityPerHour}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        capacityPerHour: Number(e.target.value),
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:justify-end gap-3 pt-6">
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-900 transition border border-gray-900"
+                >
+                  Simpan
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowModal(false)}
+                  className="px-6 py-2 bg-gray-200 text-gray-700 font-bold rounded-lg shadow hover:bg-gray-300 transition border border-gray-400"
+                >
+                  Batal
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

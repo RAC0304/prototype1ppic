@@ -313,118 +313,112 @@ export default function VendorsPage() {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-screen overflow-y-auto">
-            <h3 className="text-lg font-medium mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-2 sm:px-0">
+          <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 w-full max-w-md sm:max-w-xl border border-gray-200 relative max-h-screen overflow-y-auto">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
               {editingVendor ? 'Edit Vendor' : 'Tambah Vendor Baru'}
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Kode Vendor *
-                </label>
-                <input
-                  type="text"
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={formData.vendor_code}
-                  onChange={(e) => setFormData({ ...formData, vendor_code: e.target.value })}
-                />
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kode Vendor *</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.vendor_code}
+                    onChange={(e) => setFormData({ ...formData, vendor_code: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Kode unik vendor, wajib diisi.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Nama Vendor *</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Nama lengkap vendor.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kategori *</label>
+                  <select
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value as 'Supplier' | 'Subcontractor' })}
+                  >
+                    <option value="Supplier">Supplier</option>
+                    <option value="Subcontractor">Subkontraktor</option>
+                  </select>
+                  <span className="text-xs text-gray-400">Pilih kategori vendor.</span>
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Alamat</label>
+                  <textarea
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    rows={2}
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Alamat lengkap vendor.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kontak Person</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.contact_person}
+                    onChange={(e) => setFormData({ ...formData, contact_person: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Nama kontak utama vendor.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Email</label>
+                  <input
+                    type="email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Email aktif vendor.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Telepon</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Nomor telepon vendor.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Status</label>
+                  <select
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.status}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as 'Active' | 'Inactive' })}
+                  >
+                    <option value="Active">Aktif</option>
+                    <option value="Inactive">Nonaktif</option>
+                  </select>
+                  <span className="text-xs text-gray-400">Status aktif/nonaktif vendor.</span>
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Nama Vendor *
-                </label>
-                <input
-                  type="text"
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Kategori *
-                </label>
-                <select
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value as 'Supplier' | 'Subcontractor' })}
-                >
-                  <option value="Supplier">Supplier</option>
-                  <option value="Subcontractor">Subkontraktor</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Alamat
-                </label>
-                <textarea
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  rows={3}
-                  value={formData.address}
-                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Kontak Person
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={formData.contact_person}
-                  onChange={(e) => setFormData({ ...formData, contact_person: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Telepon
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Status
-                </label>
-                <select
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={formData.status}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value as 'Active' | 'Inactive' })}
-                >
-                  <option value="Active">Aktif</option>
-                  <option value="Inactive">Nonaktif</option>
-                </select>
-              </div>
-              <div className="flex space-x-2 pt-4">
+              <div className="flex flex-col sm:flex-row sm:justify-end gap-3 pt-6">
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  className="px-6 py-2 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-900 transition border border-gray-900"
                 >
                   {editingVendor ? 'Update' : 'Simpan'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+                  className="px-6 py-2 bg-gray-200 text-gray-700 font-bold rounded-lg shadow hover:bg-gray-300 transition border border-gray-400"
                 >
                   Batal
                 </button>

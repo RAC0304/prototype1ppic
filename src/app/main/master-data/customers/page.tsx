@@ -137,7 +137,7 @@ export default function CustomersPage() {
   }
 
   return (
-    <div className="space-y-8 px-2 md:px-0 max-w-5xl mx-auto">
+    <div className="space-y-8 px-2 sm:px-4 md:px-0 max-w-5xl mx-auto">
       <div className="mb-2">
         <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight mb-1">
           Manajemen Pelanggan
@@ -154,11 +154,11 @@ export default function CustomersPage() {
       )}
 
       {/* Filter Panel */}
-      <div className="bg-gradient-to-br from-blue-50 to-white shadow-lg rounded-xl p-8 border border-gray-100">
+      <div className="bg-gradient-to-br from-blue-50 to-white shadow-lg rounded-xl p-4 sm:p-8 border border-gray-100">
         <h2 className="text-xl font-semibold mb-6 text-blue-700">
           Filter & Pencarian
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Cari Pelanggan
@@ -207,7 +207,7 @@ export default function CustomersPage() {
       </div>
 
       {/* Customers Table */}
-      <div className="bg-white shadow-xl rounded-xl border border-gray-100">
+      <div className="bg-white shadow-xl rounded-xl border border-gray-100 overflow-x-auto">
         <div className="p-6 border-b border-gray-200 flex justify-between items-center">
           <button
             onClick={handleAddNew}
@@ -217,7 +217,7 @@ export default function CustomersPage() {
           </button>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-gray-200 text-xs sm:text-sm">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
@@ -303,10 +303,10 @@ export default function CustomersPage() {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md border border-gray-200 relative">
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 px-2 sm:px-0">
+          <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 w-full max-w-md sm:max-w-xl border border-gray-200 relative">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-gray-800">
+              <h3 className="text-xl font-bold text-gray-900">
                 {editingCustomer ? "Edit Pelanggan" : "Tambah Pelanggan Baru"}
               </h3>
               <button
@@ -318,117 +318,95 @@ export default function CustomersPage() {
                 ×
               </button>
             </div>
-            <hr className="mb-4" />
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Kode Pelanggan *
-                </label>
-                <input
-                  type="text"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={formData.customer_code}
-                  onChange={(e) =>
-                    setFormData({ ...formData, customer_code: e.target.value })
-                  }
-                />
+            <hr className="mb-4 border-gray-200" />
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kode Pelanggan *</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.customer_code}
+                    onChange={(e) => setFormData({ ...formData, customer_code: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Kode unik pelanggan, wajib diisi.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Nama Pelanggan *</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Nama lengkap pelanggan.</span>
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Alamat</label>
+                  <textarea
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    rows={2}
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Alamat lengkap pelanggan.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kontak Person</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.contact_person}
+                    onChange={(e) => setFormData({ ...formData, contact_person: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Nama kontak utama pelanggan.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Email</label>
+                  <input
+                    type="email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Email aktif pelanggan.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Telepon</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                  <span className="text-xs text-gray-400">Nomor telepon pelanggan.</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Status</label>
+                  <select
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                    value={formData.status}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as 'Active' | 'Inactive' })}
+                  >
+                    <option value="Active">Aktif</option>
+                    <option value="Inactive">Nonaktif</option>
+                  </select>
+                  <span className="text-xs text-gray-400">Status aktif/nonaktif pelanggan.</span>
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Nama Pelanggan *
-                </label>
-                <input
-                  type="text"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Alamat
-                </label>
-                <textarea
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  rows={3}
-                  value={formData.address}
-                  onChange={(e) =>
-                    setFormData({ ...formData, address: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Kontak Person
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={formData.contact_person}
-                  onChange={(e) =>
-                    setFormData({ ...formData, contact_person: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Telepon
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Status
-                </label>
-                <select
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={formData.status}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      status: e.target.value as "Active" | "Inactive",
-                    })
-                  }
-                >
-                  <option value="Active">Aktif</option>
-                  <option value="Inactive">Nonaktif</option>
-                </select>
-              </div>
-              <div className="flex space-x-3 pt-4">
+              <div className="flex flex-col sm:flex-row sm:justify-end gap-3 pt-6">
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+                  className="px-6 py-2 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-900 transition border border-gray-900"
                 >
                   {editingCustomer ? "Update" : "Simpan"}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-5 py-2 bg-gray-400 text-white rounded-lg shadow hover:bg-gray-500 transition"
+                  className="px-6 py-2 bg-gray-200 text-gray-700 font-bold rounded-lg shadow hover:bg-gray-300 transition border border-gray-400"
                 >
                   Batal
                 </button>
