@@ -233,7 +233,10 @@ export default function RoutingsPage() {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.order}
                     onChange={(e) =>
-                      setFormData({ ...formData, order: Number(e.target.value) })
+                      setFormData({
+                        ...formData,
+                        order: Number(e.target.value),
+                      })
                     }
                   />
                 </div>
@@ -274,7 +277,10 @@ export default function RoutingsPage() {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.specificMachine}
                     onChange={(e) =>
-                      setFormData({ ...formData, specificMachine: e.target.value })
+                      setFormData({
+                        ...formData,
+                        specificMachine: e.target.value,
+                      })
                     }
                   />
                 </div>

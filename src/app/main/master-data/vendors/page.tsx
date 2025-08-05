@@ -1,50 +1,50 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { Vendor } from '@/lib/supabase';
+import React, { useState, useEffect } from "react";
+import { Vendor } from "@/lib/supabase";
 
 export default function VendorsPage() {
   const [filters, setFilters] = useState({
-    search: '',
-    status: '',
-    category: '',
+    search: "",
+    status: "",
+    category: "",
   });
   const [vendors, setVendors] = useState<Vendor[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [editingVendor, setEditingVendor] = useState<Vendor | null>(null);
   const [formData, setFormData] = useState({
-    vendor_code: '',
-    name: '',
-    category: 'Supplier' as 'Supplier' | 'Subcontractor',
-    address: '',
-    contact_person: '',
-    email: '',
-    phone: '',
-    status: 'Active' as 'Active' | 'Inactive'
+    vendor_code: "",
+    name: "",
+    category: "Supplier" as "Supplier" | "Subcontractor",
+    address: "",
+    contact_person: "",
+    email: "",
+    phone: "",
+    status: "Active" as "Active" | "Inactive",
   });
 
   useEffect(() => {
     fetchVendors();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchVendors = async () => {
     try {
       setLoading(true);
       const params = new URLSearchParams();
-      if (filters.search) params.append('search', filters.search);
-      if (filters.status) params.append('status', filters.status);
-      if (filters.category) params.append('category', filters.category);
-      
+      if (filters.search) params.append("search", filters.search);
+      if (filters.status) params.append("status", filters.status);
+      if (filters.category) params.append("category", filters.category);
+
       const response = await fetch(`/api/vendors?${params}`);
-      if (!response.ok) throw new Error('Failed to fetch vendors');
-      
+      if (!response.ok) throw new Error("Failed to fetch vendors");
+
       const data = await response.json();
       setVendors(data);
     } catch (err) {
-      setError('Failed to load vendors');
+      setError("Failed to load vendors");
       console.error(err);
     } finally {
       setLoading(false);
@@ -56,21 +56,21 @@ export default function VendorsPage() {
   };
 
   const handleFilterReset = () => {
-    setFilters({ search: '', status: '', category: '' });
+    setFilters({ search: "", status: "", category: "" });
     setTimeout(fetchVendors, 100);
   };
 
   const handleAddNew = () => {
     setEditingVendor(null);
     setFormData({
-      vendor_code: '',
-      name: '',
-      category: 'Supplier',
-      address: '',
-      contact_person: '',
-      email: '',
-      phone: '',
-      status: 'Active'
+      vendor_code: "",
+      name: "",
+      category: "Supplier",
+      address: "",
+      contact_person: "",
+      email: "",
+      phone: "",
+      status: "Active",
     });
     setShowModal(true);
   };
@@ -81,11 +81,11 @@ export default function VendorsPage() {
       vendor_code: vendor.vendor_code,
       name: vendor.name,
       category: vendor.category,
-      address: vendor.address || '',
-      contact_person: vendor.contact_person || '',
-      email: vendor.email || '',
-      phone: vendor.phone || '',
-      status: vendor.status
+      address: vendor.address || "",
+      contact_person: vendor.contact_person || "",
+      email: vendor.email || "",
+      phone: vendor.phone || "",
+      status: vendor.status,
     });
     setShowModal(true);
   };
@@ -93,44 +93,44 @@ export default function VendorsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const url = editingVendor 
+      const url = editingVendor
         ? `/api/vendors/${editingVendor.id}`
-        : '/api/vendors';
-      
-      const method = editingVendor ? 'PUT' : 'POST';
-      
+        : "/api/vendors";
+
+      const method = editingVendor ? "PUT" : "POST";
+
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to save vendor');
+        throw new Error(errorData.error || "Failed to save vendor");
       }
 
       setShowModal(false);
       fetchVendors();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to save vendor');
+      setError(err instanceof Error ? err.message : "Failed to save vendor");
     }
   };
 
   const handleToggleStatus = async (vendor: Vendor) => {
     try {
-      const newStatus = vendor.status === 'Active' ? 'Inactive' : 'Active';
+      const newStatus = vendor.status === "Active" ? "Inactive" : "Active";
       const response = await fetch(`/api/vendors/${vendor.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus })
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
       });
 
-      if (!response.ok) throw new Error('Failed to update status');
-      
+      if (!response.ok) throw new Error("Failed to update status");
+
       fetchVendors();
     } catch {
-      setError('Failed to update vendor status');
+      setError("Failed to update vendor status");
     }
   };
 
@@ -146,7 +146,9 @@ export default function VendorsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Manajemen Vendor</h1>
-        <p className="text-gray-600">Repositori data terpusat untuk semua pemasok dan subkontraktor</p>
+        <p className="text-gray-600">
+          Repositori data terpusat untuk semua pemasok dan subkontraktor
+        </p>
       </div>
 
       {error && (
@@ -168,7 +170,9 @@ export default function VendorsPage() {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Nama atau Kode Vendor"
               value={filters.search}
-              onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+              onChange={(e) =>
+                setFilters({ ...filters, search: e.target.value })
+              }
             />
           </div>
           <div>
@@ -178,7 +182,9 @@ export default function VendorsPage() {
             <select
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={filters.category}
-              onChange={(e) => setFilters({ ...filters, category: e.target.value })}
+              onChange={(e) =>
+                setFilters({ ...filters, category: e.target.value })
+              }
             >
               <option value="">Semua Kategori</option>
               <option value="Supplier">Supplier</option>
@@ -192,7 +198,9 @@ export default function VendorsPage() {
             <select
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={filters.status}
-              onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+              onChange={(e) =>
+                setFilters({ ...filters, status: e.target.value })
+              }
             >
               <option value="">Semua Status</option>
               <option value="Active">Aktif</option>
@@ -260,11 +268,13 @@ export default function VendorsPage() {
                     {vendor.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                      vendor.category === 'Supplier' 
-                        ? 'bg-blue-100 text-blue-800' 
-                        : 'bg-purple-100 text-purple-800'
-                    }`}>
+                    <span
+                      className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                        vendor.category === "Supplier"
+                          ? "bg-blue-100 text-blue-800"
+                          : "bg-purple-100 text-purple-800"
+                      }`}
+                    >
                       {vendor.category}
                     </span>
                   </td>
@@ -278,12 +288,12 @@ export default function VendorsPage() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
                       className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                        vendor.status === 'Active'
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-red-100 text-red-800'
+                        vendor.status === "Active"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
                       }`}
                     >
-                      {vendor.status === 'Active' ? 'Aktif' : 'Nonaktif'}
+                      {vendor.status === "Active" ? "Aktif" : "Nonaktif"}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
@@ -297,7 +307,7 @@ export default function VendorsPage() {
                       onClick={() => handleToggleStatus(vendor)}
                       className="text-indigo-600 hover:text-indigo-900"
                     >
-                      {vendor.status === 'Active' ? 'Nonaktifkan' : 'Aktifkan'}
+                      {vendor.status === "Active" ? "Nonaktifkan" : "Aktifkan"}
                     </button>
                   </td>
                 </tr>
@@ -317,96 +327,155 @@ export default function VendorsPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-2 sm:px-0">
           <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 w-full max-w-md sm:max-w-xl border border-gray-200 relative max-h-screen overflow-y-auto">
             <h3 className="text-xl font-bold text-gray-900 mb-4">
-              {editingVendor ? 'Edit Vendor' : 'Tambah Vendor Baru'}
+              {editingVendor ? "Edit Vendor" : "Tambah Vendor Baru"}
             </h3>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kode Vendor *</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Kode Vendor *
+                  </label>
                   <input
                     type="text"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.vendor_code}
-                    onChange={(e) => setFormData({ ...formData, vendor_code: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, vendor_code: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Kode unik vendor, wajib diisi.</span>
+                  <span className="text-xs text-gray-400">
+                    Kode unik vendor, wajib diisi.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Nama Vendor *</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Nama Vendor *
+                  </label>
                   <input
                     type="text"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Nama lengkap vendor.</span>
+                  <span className="text-xs text-gray-400">
+                    Nama lengkap vendor.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kategori *</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Kategori *
+                  </label>
                   <select
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value as 'Supplier' | 'Subcontractor' })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        category: e.target.value as
+                          | "Supplier"
+                          | "Subcontractor",
+                      })
+                    }
                   >
                     <option value="Supplier">Supplier</option>
                     <option value="Subcontractor">Subkontraktor</option>
                   </select>
-                  <span className="text-xs text-gray-400">Pilih kategori vendor.</span>
+                  <span className="text-xs text-gray-400">
+                    Pilih kategori vendor.
+                  </span>
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Alamat</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Alamat
+                  </label>
                   <textarea
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     rows={2}
                     value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, address: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Alamat lengkap vendor.</span>
+                  <span className="text-xs text-gray-400">
+                    Alamat lengkap vendor.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kontak Person</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Kontak Person
+                  </label>
                   <input
                     type="text"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.contact_person}
-                    onChange={(e) => setFormData({ ...formData, contact_person: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        contact_person: e.target.value,
+                      })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Nama kontak utama vendor.</span>
+                  <span className="text-xs text-gray-400">
+                    Nama kontak utama vendor.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Email</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Email
+                  </label>
                   <input
                     type="email"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Email aktif vendor.</span>
+                  <span className="text-xs text-gray-400">
+                    Email aktif vendor.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Telepon</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Telepon
+                  </label>
                   <input
                     type="text"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Nomor telepon vendor.</span>
+                  <span className="text-xs text-gray-400">
+                    Nomor telepon vendor.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Status</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Status
+                  </label>
                   <select
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.status}
-                    onChange={(e) => setFormData({ ...formData, status: e.target.value as 'Active' | 'Inactive' })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        status: e.target.value as "Active" | "Inactive",
+                      })
+                    }
                   >
                     <option value="Active">Aktif</option>
                     <option value="Inactive">Nonaktif</option>
                   </select>
-                  <span className="text-xs text-gray-400">Status aktif/nonaktif vendor.</span>
+                  <span className="text-xs text-gray-400">
+                    Status aktif/nonaktif vendor.
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-end gap-3 pt-6">
@@ -414,7 +483,7 @@ export default function VendorsPage() {
                   type="submit"
                   className="px-6 py-2 bg-black text-white font-bold rounded-lg shadow hover:bg-gray-900 transition border border-gray-900"
                 >
-                  {editingVendor ? 'Update' : 'Simpan'}
+                  {editingVendor ? "Update" : "Simpan"}
                 </button>
                 <button
                   type="button"

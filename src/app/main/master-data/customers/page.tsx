@@ -25,7 +25,7 @@ export default function CustomersPage() {
 
   useEffect(() => {
     fetchCustomers();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchCustomers = async () => {
@@ -323,78 +323,129 @@ export default function CustomersPage() {
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kode Pelanggan *</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Kode Pelanggan *
+                  </label>
                   <input
                     type="text"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.customer_code}
-                    onChange={(e) => setFormData({ ...formData, customer_code: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        customer_code: e.target.value,
+                      })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Kode unik pelanggan, wajib diisi.</span>
+                  <span className="text-xs text-gray-400">
+                    Kode unik pelanggan, wajib diisi.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Nama Pelanggan *</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Nama Pelanggan *
+                  </label>
                   <input
                     type="text"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Nama lengkap pelanggan.</span>
+                  <span className="text-xs text-gray-400">
+                    Nama lengkap pelanggan.
+                  </span>
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Alamat</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Alamat
+                  </label>
                   <textarea
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     rows={2}
                     value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, address: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Alamat lengkap pelanggan.</span>
+                  <span className="text-xs text-gray-400">
+                    Alamat lengkap pelanggan.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Kontak Person</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Kontak Person
+                  </label>
                   <input
                     type="text"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.contact_person}
-                    onChange={(e) => setFormData({ ...formData, contact_person: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        contact_person: e.target.value,
+                      })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Nama kontak utama pelanggan.</span>
+                  <span className="text-xs text-gray-400">
+                    Nama kontak utama pelanggan.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Email</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Email
+                  </label>
                   <input
                     type="email"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Email aktif pelanggan.</span>
+                  <span className="text-xs text-gray-400">
+                    Email aktif pelanggan.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Telepon</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Telepon
+                  </label>
                   <input
                     type="text"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                   />
-                  <span className="text-xs text-gray-400">Nomor telepon pelanggan.</span>
+                  <span className="text-xs text-gray-400">
+                    Nomor telepon pelanggan.
+                  </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Status</label>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">
+                    Status
+                  </label>
                   <select
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                     value={formData.status}
-                    onChange={(e) => setFormData({ ...formData, status: e.target.value as 'Active' | 'Inactive' })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        status: e.target.value as "Active" | "Inactive",
+                      })
+                    }
                   >
                     <option value="Active">Aktif</option>
                     <option value="Inactive">Nonaktif</option>
                   </select>
-                  <span className="text-xs text-gray-400">Status aktif/nonaktif pelanggan.</span>
+                  <span className="text-xs text-gray-400">
+                    Status aktif/nonaktif pelanggan.
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-end gap-3 pt-6">

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     // Redirect to dashboard after a short delay to avoid hydration issues
     const timer = setTimeout(() => {
-      router.push('/main/dashboard');
+      router.push("/main/dashboard");
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -78,7 +78,7 @@ export default function Home() {
           <div className="mt-8 pt-6 border-t border-gray-200">
             <p className="text-xs text-gray-500 mb-3">Atau akses langsung:</p>
             <button
-              onClick={() => router.push('/main/dashboard')}
+              onClick={() => router.push("/main/dashboard")}
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
             >
               Masuk ke Dashboard
