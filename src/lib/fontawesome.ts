@@ -1,0 +1,53 @@
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faHome,
+  faClipboardList,
+  faUsers,
+  faBuilding,
+  faWrench,
+  faBox,
+  faList,
+  faRoute,
+  faCalendarAlt,
+  faFileInvoice,
+  faChartLine,
+  faCog,
+  faIndustry,
+  faRocket,
+  faHammer,
+  faShoppingCart,
+  faChartBar,
+  faBoxes,
+  faSignOutAlt,
+  faBars,
+  faTimes,
+  faChevronLeft,
+  faChevronRight
+} from '@fortawesome/free-solid-svg-icons';
+
+// Add icons to the library
+library.add(
+  faHome,
+  faClipboardList,
+  faUsers,
+  faBuilding,
+  faWrench,
+  faBox,
+  faList,
+  faRoute,
+  faCalendarAlt,
+  faFileInvoice,
+  faChartLine,
+  faCog,
+  faIndustry,
+  faRocket,
+  faHammer,
+  faShoppingCart,
+  faChartBar,
+  faBoxes,
+  faSignOutAlt,
+  faBars,
+  faTimes,
+  faChevronLeft,
+  faChevronRight
+);
