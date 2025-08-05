@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { User } from "@supabase/supabase-js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '@/lib/fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "@/lib/fontawesome";
 
 export default function MainLayout({
   children,
@@ -72,24 +72,35 @@ export default function MainLayout({
           sidebarMinimized ? "w-20" : "w-72"
         }`}
         style={{
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.1)'
+          boxShadow:
+            "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.1)",
         }}
       >
         <div className="p-4 border-b bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 text-white flex items-center gap-2 justify-between relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent opacity-50"></div>
           <div className="flex items-center gap-2 relative z-10">
-            <span className={`inline-block transition-all duration-300 ${sidebarMinimized ? 'scale-90' : 'scale-100'}`}>
+            <span
+              className={`inline-block transition-all duration-300 ${
+                sidebarMinimized ? "scale-90" : "scale-100"
+              }`}
+            >
               <div className="w-7 h-7 bg-blue-400 rounded-lg flex items-center justify-center">
-                <FontAwesomeIcon 
-                  icon="industry" 
-                  className="text-white text-sm animate-pulse" 
+                <FontAwesomeIcon
+                  icon="industry"
+                  className="text-white text-sm animate-pulse"
                 />
               </div>
             </span>
-            <div className={`transition-all duration-500 ease-in-out ${
-              sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-            }`}>
-              <h2 className="text-lg font-extrabold tracking-tight">Sistem PPIC</h2>
+            <div
+              className={`transition-all duration-500 ease-in-out ${
+                sidebarMinimized
+                  ? "opacity-0 w-0 overflow-hidden"
+                  : "opacity-100 w-auto"
+              }`}
+            >
+              <h2 className="text-lg font-extrabold tracking-tight">
+                Sistem PPIC
+              </h2>
             </div>
           </div>
           <button
@@ -119,29 +130,42 @@ export default function MainLayout({
             }`}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <FontAwesomeIcon 
-              icon="home" 
+            <FontAwesomeIcon
+              icon="home"
               className={`text-lg transition-transform duration-300 group-hover:scale-110 ${
-                pathname === "/main/dashboard" ? "animate-bounce text-blue-600" : "text-blue-500"
+                pathname === "/main/dashboard"
+                  ? "animate-bounce text-blue-600"
+                  : "text-blue-500"
               }`}
             />
-            <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-              sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-            }`}>
+            <span
+              className={`transition-all duration-500 ease-in-out relative z-10 ${
+                sidebarMinimized
+                  ? "opacity-0 w-0 overflow-hidden"
+                  : "opacity-100 w-auto"
+              }`}
+            >
               Dashboard
             </span>
           </Link>
-          
+
           <div className="space-y-2">
             <div
               className={`font-bold text-blue-700 py-3 border-b border-blue-200/50 flex items-center gap-2 transition-all duration-300 ${
                 sidebarMinimized ? "text-xs justify-center" : ""
               }`}
             >
-              <FontAwesomeIcon icon="clipboard-list" className="text-base text-blue-600" />
-              <span className={`transition-all duration-500 ease-in-out ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <FontAwesomeIcon
+                icon="clipboard-list"
+                className="text-base text-blue-600"
+              />
+              <span
+                className={`transition-all duration-500 ease-in-out ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Data Master
               </span>
             </div>
@@ -156,13 +180,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="users" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500" 
+              <FontAwesomeIcon
+                icon="users"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Pelanggan
               </span>
             </Link>
@@ -177,13 +205,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="building" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500" 
+              <FontAwesomeIcon
+                icon="building"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Vendor
               </span>
             </Link>
@@ -198,13 +230,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="wrench" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-orange-500" 
+              <FontAwesomeIcon
+                icon="wrench"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-orange-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Produk & Komponen
               </span>
             </Link>
@@ -219,13 +255,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="box" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500" 
+              <FontAwesomeIcon
+                icon="box"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Material
               </span>
             </Link>
@@ -240,13 +280,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="list" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-pink-500" 
+              <FontAwesomeIcon
+                icon="list"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-pink-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Bill of Materials
               </span>
             </Link>
@@ -261,28 +305,39 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="route" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-gray-500" 
+              <FontAwesomeIcon
+                icon="route"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-gray-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Rute Produksi
               </span>
             </Link>
           </div>
-          
+
           <div className="space-y-2">
             <div
               className={`font-bold text-blue-700 py-3 border-b border-blue-200/50 flex items-center gap-2 transition-all duration-300 ${
                 sidebarMinimized ? "text-xs justify-center" : ""
               }`}
             >
-              <FontAwesomeIcon icon="calendar-alt" className="text-base text-blue-600" />
-              <span className={`transition-all duration-500 ease-in-out ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <FontAwesomeIcon
+                icon="calendar-alt"
+                className="text-base text-blue-600"
+              />
+              <span
+                className={`transition-all duration-500 ease-in-out ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Perencanaan
               </span>
             </div>
@@ -297,13 +352,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="file-invoice" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500" 
+              <FontAwesomeIcon
+                icon="file-invoice"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Pesanan Penjualan
               </span>
             </Link>
@@ -318,13 +377,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="chart-line" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500" 
+              <FontAwesomeIcon
+                icon="chart-line"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Peramalan
               </span>
             </Link>
@@ -339,13 +402,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="cog" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-yellow-500" 
+              <FontAwesomeIcon
+                icon="cog"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-yellow-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Perencanaan Material
               </span>
             </Link>
@@ -360,28 +427,39 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="industry" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500" 
+              <FontAwesomeIcon
+                icon="industry"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Perencanaan Kapasitas
               </span>
             </Link>
           </div>
-          
+
           <div className="space-y-2">
             <div
               className={`font-bold text-blue-700 py-3 border-b border-blue-200/50 flex items-center gap-2 transition-all duration-300 ${
                 sidebarMinimized ? "text-xs justify-center" : ""
               }`}
             >
-              <FontAwesomeIcon icon="rocket" className="text-base text-blue-600" />
-              <span className={`transition-all duration-500 ease-in-out ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <FontAwesomeIcon
+                icon="rocket"
+                className="text-base text-blue-600"
+              />
+              <span
+                className={`transition-all duration-500 ease-in-out ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Eksekusi & Kontrol
               </span>
             </div>
@@ -396,13 +474,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="hammer" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500" 
+              <FontAwesomeIcon
+                icon="hammer"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Perintah Kerja
               </span>
             </Link>
@@ -417,13 +499,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="shopping-cart" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500" 
+              <FontAwesomeIcon
+                icon="shopping-cart"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Pesanan Pembelian
               </span>
             </Link>
@@ -438,13 +524,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="chart-bar" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-yellow-500" 
+              <FontAwesomeIcon
+                icon="chart-bar"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-yellow-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Transaksi Inventaris
               </span>
             </Link>
@@ -459,13 +549,17 @@ export default function MainLayout({
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon 
-                icon="boxes" 
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500" 
+              <FontAwesomeIcon
+                icon="boxes"
+                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
               />
-              <span className={`transition-all duration-500 ease-in-out relative z-10 ${
-                sidebarMinimized ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
-              }`}>
+              <span
+                className={`transition-all duration-500 ease-in-out relative z-10 ${
+                  sidebarMinimized
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
+                }`}
+              >
                 Stock Take
               </span>
             </Link>
@@ -476,14 +570,20 @@ export default function MainLayout({
                 sidebarMinimized ? "flex flex-col items-center" : ""
               }`}
             >
-              <div className={`transition-all duration-500 ease-in-out ${
-                sidebarMinimized ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto mb-3'
-              }`}>
+              <div
+                className={`transition-all duration-500 ease-in-out ${
+                  sidebarMinimized
+                    ? "opacity-0 h-0 overflow-hidden"
+                    : "opacity-100 h-auto mb-3"
+                }`}
+              >
                 <div className="flex items-center gap-2 text-sm">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                     {user.email?.charAt(0).toUpperCase()}
                   </div>
-                  <span className="font-semibold text-gray-700 truncate">{user.email}</span>
+                  <span className="font-semibold text-gray-700 truncate">
+                    {user.email}
+                  </span>
                 </div>
               </div>
               <button
@@ -525,7 +625,8 @@ export default function MainLayout({
             className="fixed left-0 top-0 h-full w-72 bg-gradient-to-b from-white to-blue-50/30 backdrop-blur-sm shadow-2xl border-r border-blue-200/50 transform transition-all duration-500 ease-out animate-slideInLeft flex flex-col"
             onClick={(e) => e.stopPropagation()}
             style={{
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.1)'
+              boxShadow:
+                "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.1)",
             }}
           >
             {/* Sidebar Header */}
@@ -533,12 +634,14 @@ export default function MainLayout({
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent opacity-50"></div>
               <div className="flex items-center gap-2 relative z-10">
                 <div className="w-7 h-7 bg-blue-400 rounded-lg flex items-center justify-center">
-                  <FontAwesomeIcon 
-                    icon="industry" 
-                    className="text-white text-sm animate-pulse" 
+                  <FontAwesomeIcon
+                    icon="industry"
+                    className="text-white text-sm animate-pulse"
                   />
                 </div>
-                <span className="font-extrabold text-lg tracking-tight">Sistem PPIC</span>
+                <span className="font-extrabold text-lg tracking-tight">
+                  Sistem PPIC
+                </span>
               </div>
               <button
                 className="p-2 rounded-lg hover:bg-blue-800/50 transition-all duration-300 hover:scale-110 relative z-10 backdrop-blur-sm"
@@ -565,19 +668,24 @@ export default function MainLayout({
                     onClick={() => setSidebarOpen(false)}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <FontAwesomeIcon 
-                      icon="home" 
+                    <FontAwesomeIcon
+                      icon="home"
                       className={`text-lg transition-transform duration-300 group-hover:scale-110 relative z-10 ${
-                        pathname === "/main/dashboard" ? "animate-bounce text-blue-600" : "text-blue-500"
+                        pathname === "/main/dashboard"
+                          ? "animate-bounce text-blue-600"
+                          : "text-blue-500"
                       }`}
                     />
                     <span className="relative z-10">Dashboard</span>
                   </Link>
                 </div>
-                
+
                 <div>
                   <div className="text-xs font-bold text-blue-700 uppercase mb-3 tracking-wide flex items-center gap-2">
-                    <FontAwesomeIcon icon="clipboard-list" className="text-base text-blue-600" />
+                    <FontAwesomeIcon
+                      icon="clipboard-list"
+                      className="text-base text-blue-600"
+                    />
                     Data Master
                   </div>
                   <div className="space-y-2 ml-2">
@@ -591,9 +699,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="users" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500" 
+                      <FontAwesomeIcon
+                        icon="users"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500"
                       />
                       <span className="relative z-10">Pelanggan</span>
                     </Link>
@@ -607,9 +715,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="building" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500" 
+                      <FontAwesomeIcon
+                        icon="building"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
                       />
                       <span className="relative z-10">Vendor</span>
                     </Link>
@@ -623,9 +731,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="wrench" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-orange-500" 
+                      <FontAwesomeIcon
+                        icon="wrench"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-orange-500"
                       />
                       <span className="relative z-10">Produk & Komponen</span>
                     </Link>
@@ -639,9 +747,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="box" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500" 
+                      <FontAwesomeIcon
+                        icon="box"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
                       />
                       <span className="relative z-10">Material</span>
                     </Link>
@@ -655,9 +763,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="list" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-pink-500" 
+                      <FontAwesomeIcon
+                        icon="list"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-pink-500"
                       />
                       <span className="relative z-10">Bill of Materials</span>
                     </Link>
@@ -671,9 +779,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="route" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-gray-500" 
+                      <FontAwesomeIcon
+                        icon="route"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-gray-500"
                       />
                       <span className="relative z-10">Rute Produksi</span>
                     </Link>
@@ -681,7 +789,10 @@ export default function MainLayout({
                 </div>
                 <div>
                   <div className="text-xs font-bold text-blue-700 uppercase mb-3 tracking-wide flex items-center gap-2">
-                    <FontAwesomeIcon icon="calendar-alt" className="text-base text-blue-600" />
+                    <FontAwesomeIcon
+                      icon="calendar-alt"
+                      className="text-base text-blue-600"
+                    />
                     Perencanaan
                   </div>
                   <div className="space-y-2 ml-2">
@@ -695,9 +806,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="file-invoice" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500" 
+                      <FontAwesomeIcon
+                        icon="file-invoice"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500"
                       />
                       <span className="relative z-10">Pesanan Penjualan</span>
                     </Link>
@@ -711,9 +822,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="chart-line" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500" 
+                      <FontAwesomeIcon
+                        icon="chart-line"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
                       />
                       <span className="relative z-10">Peramalan</span>
                     </Link>
@@ -727,11 +838,13 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="cog" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500" 
+                      <FontAwesomeIcon
+                        icon="cog"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
                       />
-                      <span className="relative z-10">Perencanaan Material</span>
+                      <span className="relative z-10">
+                        Perencanaan Material
+                      </span>
                     </Link>
                     <Link
                       href="/main/planning/crp"
@@ -743,17 +856,22 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="industry" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500" 
+                      <FontAwesomeIcon
+                        icon="industry"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
                       />
-                      <span className="relative z-10">Perencanaan Kapasitas</span>
+                      <span className="relative z-10">
+                        Perencanaan Kapasitas
+                      </span>
                     </Link>
                   </div>
                 </div>
                 <div>
                   <div className="text-xs font-bold text-blue-700 uppercase mb-3 tracking-wide flex items-center gap-2">
-                    <FontAwesomeIcon icon="rocket" className="text-lg text-blue-700" />
+                    <FontAwesomeIcon
+                      icon="rocket"
+                      className="text-lg text-blue-700"
+                    />
                     Eksekusi & Kontrol
                   </div>
                   <div className="space-y-2 ml-2">
@@ -767,9 +885,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="hammer" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500" 
+                      <FontAwesomeIcon
+                        icon="hammer"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
                       />
                       <span className="relative z-10">Perintah Kerja</span>
                     </Link>
@@ -783,9 +901,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="shopping-cart" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500" 
+                      <FontAwesomeIcon
+                        icon="shopping-cart"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
                       />
                       <span className="relative z-10">Pesanan Pembelian</span>
                     </Link>
@@ -799,11 +917,13 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="chart-bar" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500" 
+                      <FontAwesomeIcon
+                        icon="chart-bar"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
                       />
-                      <span className="relative z-10">Transaksi Inventaris</span>
+                      <span className="relative z-10">
+                        Transaksi Inventaris
+                      </span>
                     </Link>
                     <Link
                       href="/main/execution/inventory/stock-take"
@@ -815,9 +935,9 @@ export default function MainLayout({
                       onClick={() => setSidebarOpen(false)}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <FontAwesomeIcon 
-                        icon="clipboard-list" 
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500" 
+                      <FontAwesomeIcon
+                        icon="clipboard-list"
+                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
                       />
                       <span className="relative z-10">Stock Take</span>
                     </Link>
@@ -830,7 +950,9 @@ export default function MainLayout({
                     <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                       {user.email?.charAt(0).toUpperCase()}
                     </div>
-                    <span className="font-semibold text-gray-700 truncate">{user.email}</span>
+                    <span className="font-semibold text-gray-700 truncate">
+                      {user.email}
+                    </span>
                   </div>
                   <button
                     onClick={handleSignOut}

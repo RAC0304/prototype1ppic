@@ -1,4 +1,4 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faHome,
   faClipboardList,
@@ -22,8 +22,8 @@ import {
   faBars,
   faTimes,
   faChevronLeft,
-  faChevronRight
-} from '@fortawesome/free-solid-svg-icons';
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 // Add icons to the library
 library.add(

@@ -114,7 +114,8 @@ body {
 }
 
 @keyframes bounceGlow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
     box-shadow: 0 0 0 rgba(59, 130, 246, 0);
   }
@@ -125,7 +126,8 @@ body {
 }
 
 @keyframes pulseScale {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
