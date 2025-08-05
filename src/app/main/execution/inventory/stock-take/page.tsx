@@ -30,7 +30,7 @@ interface SessionDetails {
 }
 
 export default function StockTakePage() {
-  const [sessions, setSessions] = useState<StockTakeSession[]>([
+  const [sessions] = useState<StockTakeSession[]>([
     {
       id: "STO-2025-07-01",
       description: "STO Bulanan Gudang Bahan Baku Juli",

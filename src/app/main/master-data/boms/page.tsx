@@ -8,7 +8,7 @@ export default function BOMPage() {
     name: string;
     status: string;
   } | null>(null);
-  const [parentItems, setParentItems] = useState([
+  const [parentItems] = useState([
     { id: "32190-0900", name: "BRACKET ENGINE", status: "complete" },
     { id: "32190-0901", name: "WASHER PLAIN 6MM", status: "incomplete" },
   ]);

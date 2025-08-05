@@ -29,7 +29,7 @@ export default function LoginPage() {
       } else {
         router.push("/main/dashboard");
       }
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred");
     } finally {
       setLoading(false);

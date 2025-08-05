@@ -400,7 +400,7 @@ export default function MRPPage() {
             Belum ada hasil perhitungan MRP
           </div>
           <p className="text-sm text-gray-400">
-            Klik "Jalankan MRP" untuk memulai perhitungan kebutuhan material
+            Klik &quot;Jalankan MRP&quot; untuk memulai perhitungan kebutuhan material
           </p>
         </div>
       )}

@@ -8,7 +8,7 @@ export default function RoutingsPage() {
     name: string;
     status: string;
   } | null>(null);
-  const [parts, setParts] = useState([
+  const [parts] = useState([
     { id: "PART-001", name: "Bracket Engine", status: "complete" },
     { id: "PART-002", name: "Washer Plain 6mm", status: "incomplete" },
   ]);

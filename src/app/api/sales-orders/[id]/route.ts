@@ -3,9 +3,10 @@ import { supabase } from '@/lib/supabase'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const { data, error } = await supabase
       .from('sales_orders')
       .select(`
@@ -20,7 +21,7 @@ export async function GET(
           parts(part_number, part_name)
         )
       `)
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (error) {
@@ -28,23 +29,24 @@ export async function GET(
     }
 
     return NextResponse.json(data)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const { sales_order, order_lines } = await request.json()
     
     // Update sales order
     const { data: soData, error: soError } = await supabase
       .from('sales_orders')
       .update(sales_order)
-      .eq('id', params.id)
+      .eq('id', id)
       .select()
 
     if (soError) {
@@ -57,12 +59,12 @@ export async function PUT(
       await supabase
         .from('sales_order_lines')
         .delete()
-        .eq('sales_order_id', params.id)
+        .eq('sales_order_id', id)
 
       // Insert new lines
-      const linesWithOrderId = order_lines.map((line: any) => ({
+      const linesWithOrderId = order_lines.map((line: Record<string, unknown>) => ({
         ...line,
-        sales_order_id: params.id
+        sales_order_id: id
       }))
 
       const { data: linesData, error: linesError } = await supabase
@@ -80,25 +82,26 @@ export async function PUT(
       await supabase
         .from('sales_orders')
         .update({ total_amount: totalAmount })
-        .eq('id', params.id)
+        .eq('id', id)
     }
 
     return NextResponse.json(soData[0])
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Update status to 'Cancelled' instead of hard delete
     const { data, error } = await supabase
       .from('sales_orders')
       .update({ status: 'Cancelled' })
-      .eq('id', params.id)
+      .eq('id', id)
       .select()
 
     if (error) {
@@ -106,7 +109,7 @@ export async function DELETE(
     }
 
     return NextResponse.json(data[0])
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

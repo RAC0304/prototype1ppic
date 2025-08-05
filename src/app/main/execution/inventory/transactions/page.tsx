@@ -10,7 +10,7 @@ export default function InventoryTransactionsPage() {
     documentSearch: "",
   });
 
-  const [transactions, setTransactions] = useState([
+  const [transactions] = useState([
     {
       id: "TX001",
       timestamp: "2025-07-10 14:30",

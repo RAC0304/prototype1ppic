@@ -18,7 +18,7 @@ export default function CRPPage() {
     workStation: "Semua Stasiun",
   });
 
-  const [chartData, setChartData] = useState({
+  const [chartData] = useState({
     labels: ["Press 400 Ton", "Weld Robot", "Packing Manual"],
     datasets: [
       {
@@ -29,7 +29,7 @@ export default function CRPPage() {
     ],
   });
 
-  const [tableData, setTableData] = useState([
+  const [tableData] = useState([
     {
       workStation: "Stamping",
       machine: "Press 400 Ton",

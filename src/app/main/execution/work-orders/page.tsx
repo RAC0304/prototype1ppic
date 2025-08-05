@@ -204,7 +204,7 @@ export default function WorkOrdersPage() {
       setShowModal(false);
       setEditingWorkOrder(null);
       // fetchWorkOrders(); // Refresh data
-    } catch (err) {
+    } catch {
       setError("Failed to save work order");
     }
   };
@@ -219,7 +219,7 @@ export default function WorkOrdersPage() {
         wo.id === workOrderId ? { ...wo, status: newStatus } : wo
       );
       setWorkOrders(updatedWorkOrders);
-    } catch (err) {
+    } catch {
       setError("Failed to update work order status");
     }
   };

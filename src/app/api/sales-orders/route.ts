@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json(data)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
     const salesOrderId = soData[0].id
 
     // Insert order lines
-    const linesWithOrderId = order_lines.map((line: any) => ({
+    const linesWithOrderId = order_lines.map((line: Record<string, unknown>) => ({
       ...line,
       sales_order_id: salesOrderId
     }))
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
       sales_order: soData[0], 
       order_lines: linesData 
     }, { status: 201 })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

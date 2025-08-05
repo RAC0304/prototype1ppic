@@ -27,6 +27,7 @@ export default function VendorsPage() {
 
   useEffect(() => {
     fetchVendors();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchVendors = async () => {
@@ -128,7 +129,7 @@ export default function VendorsPage() {
       if (!response.ok) throw new Error('Failed to update status');
       
       fetchVendors();
-    } catch (err) {
+    } catch {
       setError('Failed to update vendor status');
     }
   };

@@ -3,13 +3,14 @@ import { supabase } from '@/lib/supabase'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const { data, error } = await supabase
       .from('vendors')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (error) {
@@ -17,22 +18,23 @@ export async function GET(
     }
 
     return NextResponse.json(data)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json()
     
     const { data, error } = await supabase
       .from('vendors')
       .update(body)
-      .eq('id', params.id)
+      .eq('id', id)
       .select()
 
     if (error) {
@@ -40,21 +42,22 @@ export async function PUT(
     }
 
     return NextResponse.json(data[0])
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Soft delete by updating status to 'Inactive'
     const { data, error } = await supabase
       .from('vendors')
       .update({ status: 'Inactive' })
-      .eq('id', params.id)
+      .eq('id', id)
       .select()
 
     if (error) {
@@ -62,7 +65,7 @@ export async function DELETE(
     }
 
     return NextResponse.json(data[0])
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

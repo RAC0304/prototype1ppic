@@ -21,7 +21,7 @@ export default function SalesOrdersPage() {
     customer_id: '',
     order_date: '',
     delivery_date: '',
-    status: 'Open' as const,
+    status: 'Open' as SalesOrder['status'],
     lines: [{ part_id: '', quantity: 0, unit_price: 0 }]
   });
 
@@ -103,7 +103,7 @@ export default function SalesOrdersPage() {
     }
   };
 
-  const updateLine = (index: number, field: string, value: any) => {
+  const updateLine = (index: number, field: string, value: unknown) => {
     const newLines = [...formData.lines];
     newLines[index] = { ...newLines[index], [field]: value };
     setFormData({ ...formData, lines: newLines });

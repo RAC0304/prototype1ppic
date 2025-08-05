@@ -25,6 +25,7 @@ export default function CustomersPage() {
 
   useEffect(() => {
     fetchCustomers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchCustomers = async () => {
@@ -123,7 +124,7 @@ export default function CustomersPage() {
       if (!response.ok) throw new Error("Failed to update status");
 
       fetchCustomers();
-    } catch (err) {
+    } catch {
       setError("Failed to update customer status");
     }
   };

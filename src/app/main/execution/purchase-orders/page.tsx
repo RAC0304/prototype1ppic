@@ -11,7 +11,7 @@ export default function PurchaseOrdersPage() {
     endDate: "",
   });
 
-  const [purchaseOrders, setPurchaseOrders] = useState([
+  const [purchaseOrders] = useState([
     {
       id: "PO001",
       vendorName: "Vendor A",
