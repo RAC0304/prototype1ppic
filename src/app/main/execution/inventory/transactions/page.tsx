@@ -40,11 +40,10 @@ export default function InventoryTransactionsPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-blue-600 text-3xl">📑</span>
-          <h1 className="text-2xl font-bold text-gray-800">
+    <div className="space-y-6 p-6 mx-auto">
+      <div className="">
+        <div className="mb-2">
+          <h1 className="text-2xl font-extrabold text-800">
             Riwayat Transaksi Inventaris
           </h1>
         </div>
@@ -55,11 +54,13 @@ export default function InventoryTransactionsPage() {
 
         {/* Panel Filter Lanjutan */}
         <div className="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-blue-500">🔎</span>
-            <h2 className="text-lg font-semibold text-gray-700">
-              Filter Transaksi
-            </h2>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-blue-500">🔎</span>
+              <h2 className="text-lg font-semibold text-gray-700">
+                Filter Transaksi
+              </h2>
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -151,11 +152,30 @@ export default function InventoryTransactionsPage() {
 
         {/* Tabel Riwayat Transaksi */}
         <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-blue-500">🗂️</span>
-            <h2 className="text-lg font-semibold text-gray-700">
-              Tabel Riwayat Transaksi
-            </h2>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-blue-500">🗂️</span>
+              <h2 className="text-lg font-semibold text-gray-700">
+                Tabel Riwayat Transaksi
+              </h2>
+            </div>
+            <button className="bg-blue-500 hover:bg-blue-600 transition text-white px-5 py-2 rounded-xl font-bold shadow flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                />
+              </svg>
+              Download Data Riwayat Transaksi
+            </button>
           </div>
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-200 rounded-xl overflow-hidden">

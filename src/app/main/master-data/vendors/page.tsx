@@ -143,9 +143,11 @@ export default function VendorsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Manajemen Vendor</h1>
+    <div className="space-y-6 p-6 mx-auto">
+      <div className="mb-2">
+        <h1 className="text-2xl font-extrabold text-gray-900">
+          Manajemen Vendor
+        </h1>
         <p className="text-gray-600">
           Repositori data terpusat untuk semua pemasok dan subkontraktor
         </p>
@@ -159,7 +161,7 @@ export default function VendorsPage() {
 
       {/* Filter Panel */}
       <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-lg font-medium mb-4">Filter & Pencarian</h2>
+        <h2 className="text-lg font-semibold text-700">Filter & Pencarian</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -227,12 +229,31 @@ export default function VendorsPage() {
       {/* Vendors Table */}
       <div className="bg-white shadow rounded-lg">
         <div className="p-6 border-b border-gray-200">
-          <button
-            onClick={handleAddNew}
-            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
-          >
-            Tambah Vendor Baru
-          </button>
+          <div className="flex flex-wrap gap-3 justify-end items-center">
+            <button
+              onClick={handleAddNew}
+              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+            >
+              Tambah Vendor Baru
+            </button>
+            <button className="bg-blue-500 hover:bg-blue-600 transition text-white px-5 py-2 rounded-xl font-bold shadow flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                />
+              </svg>
+              Download Data Vendor
+            </button>
+          </div>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">

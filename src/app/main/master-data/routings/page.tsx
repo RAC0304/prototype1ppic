@@ -60,10 +60,10 @@ export default function RoutingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="space-y-6 p-6 mx-auto">
+      <div className="">
         <div className="mb-2">
-          <h1 className="text-2xl font-bold text-gray-800">
+          <h1 className="text-2xl font-extrabold text-gray-800">
             Manajemen Rute Produksi
           </h1>
         </div>
@@ -77,7 +77,7 @@ export default function RoutingsPage() {
           {/* Panel Kiri: Daftar Produk & Komponen */}
           <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200">
             <div className="mb-4">
-              <h2 className="text-lg font-semibold text-gray-700">
+              <h2 className="text-lg font-semibold text-700">
                 Daftar Produk & Komponen
               </h2>
             </div>
@@ -97,12 +97,8 @@ export default function RoutingsPage() {
                   }`}
                   onClick={() => setSelectedPart(part)}
                 >
-                  <span className="font-semibold text-gray-700">
-                    {part.name}
-                  </span>
-                  <span className="text-xs text-gray-500 ml-2">
-                    ({part.id})
-                  </span>
+                  <span className="font-semibold text-700">{part.name}</span>
+                  <span className="text-xs text-500 ml-2">({part.id})</span>
                   <span
                     className={`ml-2 text-lg ${
                       part.status === "complete"
@@ -123,11 +119,11 @@ export default function RoutingsPage() {
               <>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-blue-500">🔧</span>
-                  <h2 className="text-lg font-semibold text-gray-700">
+                  <h2 className="text-lg font-semibold text-700">
                     Detail Rute Produksi untuk {selectedPart.name}
                   </h2>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-600 mb-4">
                   Nomor Part:{" "}
                   <span className="font-mono bg-gray-100 px-2 py-1 rounded">
                     {selectedPart.id}

@@ -191,9 +191,11 @@ export default function SalesOrdersPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6 mx-auto">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Pesanan Penjualan</h1>
+        <h1 className="text-2xl font-extrabold text-gray-900">
+          Pesanan Penjualan
+        </h1>
         <p className="text-gray-600">
           Manajemen pesanan dari pelanggan dan tracking status produksi
         </p>
@@ -208,12 +210,31 @@ export default function SalesOrdersPage() {
       {/* Sales Orders Table */}
       <div className="bg-white shadow rounded-lg">
         <div className="p-6 border-b border-gray-200">
-          <button
-            onClick={handleAddNew}
-            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
-          >
-            Tambah Sales Order Baru
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleAddNew}
+              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+            >
+              Tambah Sales Order Baru
+            </button>
+            <button className="bg-blue-500 hover:bg-blue-600 transition text-white px-5 py-2 rounded-xl font-bold shadow flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                />
+              </svg>
+              Download Data Sales Order
+            </button>
+          </div>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">

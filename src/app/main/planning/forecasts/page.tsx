@@ -55,10 +55,10 @@ export default function ForecastsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="space-y-6 p-6 mx-auto">
+      <div>
         <div className="mb-2">
-          <h1 className="text-2xl font-bold text-gray-800">
+          <h1 className="text-2xl font-extrabold text-gray-800">
             Manajemen Forecast Permintaan
           </h1>
         </div>

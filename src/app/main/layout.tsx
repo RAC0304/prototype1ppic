@@ -5,6 +5,15 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import {
+  ChartPieIcon,
+  CursorArrowRaysIcon,
+  FingerPrintIcon,
+  SquaresPlusIcon,
+  ArrowPathIcon,
+} from "@heroicons/react/24/outline";
 import { User } from "@supabase/supabase-js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@/lib/fontawesome";
@@ -69,7 +78,7 @@ export default function MainLayout({
       {/* Sidebar Desktop */}
       <aside
         className={`hidden md:flex flex-col h-screen fixed left-0 top-0 bg-gradient-to-b from-white to-blue-50/30 backdrop-blur-sm shadow-2xl border-r border-blue-200/50 z-40 transition-all duration-500 ease-in-out transform ${
-          sidebarMinimized ? "w-20" : "w-72"
+          sidebarMinimized ? "w-27" : "w-72"
         }`}
         style={{
           boxShadow:
@@ -150,419 +159,337 @@ export default function MainLayout({
           </Link>
 
           <div className="space-y-2">
-            <div
-              className={`font-bold text-blue-700 py-3 border-b border-blue-200/50 flex items-center gap-2 transition-all duration-300 ${
-                sidebarMinimized ? "text-xs justify-center" : ""
-              }`}
-            >
-              <FontAwesomeIcon
-                icon="clipboard-list"
-                className="text-base text-blue-600"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
+            <Popover className="relative">
+              <PopoverButton
+                className={`w-full md:flex hidden items-center gap-2 font-bold text-blue-700 py-3 border-b border-blue-200/50 transition-all duration-300 ${
+                  sidebarMinimized ? "text-xs justify-center" : ""
                 }`}
               >
-                Data Master
-              </span>
-            </div>
-            <Link
-              href="/main/master-data/customers"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/master-data/customers"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="users"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Pelanggan
-              </span>
-            </Link>
-            <Link
-              href="/main/master-data/vendors"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/master-data/vendors"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="building"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Vendor
-              </span>
-            </Link>
-            <Link
-              href="/main/master-data/parts"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/master-data/parts"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="wrench"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-orange-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Produk & Komponen
-              </span>
-            </Link>
-            <Link
-              href="/main/master-data/materials"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/master-data/materials"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="box"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Material
-              </span>
-            </Link>
-            <Link
-              href="/main/master-data/boms"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/master-data/boms"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="list"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-pink-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Bill of Materials
-              </span>
-            </Link>
-            <Link
-              href="/main/master-data/routings"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/master-data/routings"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="route"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-gray-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Rute Produksi
-              </span>
-            </Link>
+                <FontAwesomeIcon
+                  icon="clipboard-list"
+                  className="text-base text-blue-600"
+                />
+                <span
+                  className={`transition-all duration-500 ease-in-out ${
+                    sidebarMinimized
+                      ? "opacity-0 w-0 overflow-hidden"
+                      : "opacity-100 w-auto"
+                  }`}
+                >
+                  Data Master
+                </span>
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="w-5 h-5 text-blue-600"
+                />
+              </PopoverButton>
+              <PopoverPanel className="relative w-full bg-white rounded-xl shadow-lg border border-blue-200 mt-2">
+                <div className="p-2 space-y-2 w-72 min-w-max">
+                  <Link
+                    href="/main/master-data/customers"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/master-data/customers"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="users"
+                      className="text-blue-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Pelanggan</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/master-data/vendors"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/master-data/vendors"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="building"
+                      className="text-green-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Vendor</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/master-data/parts"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/master-data/parts"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="wrench"
+                      className="text-orange-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Produk & Komponen</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/master-data/materials"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/master-data/materials"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="box"
+                      className="text-purple-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Material</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/master-data/boms"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/master-data/boms"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="list"
+                      className="text-pink-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Bill of Materials</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/master-data/routings"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/master-data/routings"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="route"
+                      className="text-gray-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Rute Produksi</span>
+                    )}
+                  </Link>
+                </div>
+              </PopoverPanel>
+            </Popover>
           </div>
 
           <div className="space-y-2">
-            <div
-              className={`font-bold text-blue-700 py-3 border-b border-blue-200/50 flex items-center gap-2 transition-all duration-300 ${
-                sidebarMinimized ? "text-xs justify-center" : ""
-              }`}
-            >
-              <FontAwesomeIcon
-                icon="calendar-alt"
-                className="text-base text-blue-600"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
+            <Popover className="relative">
+              <PopoverButton
+                className={`w-full md:flex hidden items-center gap-2 font-bold text-blue-700 py-3 border-b border-blue-200/50 transition-all duration-300 ${
+                  sidebarMinimized ? "text-xs justify-center" : ""
                 }`}
               >
-                Perencanaan
-              </span>
-            </div>
-            <Link
-              href="/main/planning/sales-orders"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/planning/sales-orders"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="file-invoice"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Pesanan Penjualan
-              </span>
-            </Link>
-            <Link
-              href="/main/planning/forecasts"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/planning/forecasts"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="chart-line"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Peramalan
-              </span>
-            </Link>
-            <Link
-              href="/main/planning/mrp"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/planning/mrp"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="cog"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-yellow-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Perencanaan Material
-              </span>
-            </Link>
-            <Link
-              href="/main/planning/crp"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/planning/crp"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="industry"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Perencanaan Kapasitas
-              </span>
-            </Link>
+                <FontAwesomeIcon
+                  icon="calendar-alt"
+                  className="text-base text-blue-600"
+                />
+                <span
+                  className={`transition-all duration-500 ease-in-out ${
+                    sidebarMinimized
+                      ? "opacity-0 w-0 overflow-hidden"
+                      : "opacity-100 w-auto"
+                  }`}
+                >
+                  Perencanaan
+                </span>
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="w-5 h-5 text-blue-600"
+                />
+              </PopoverButton>
+              <PopoverPanel className="relative w-full bg-white rounded-xl shadow-lg border border-blue-200 mt-2">
+                <div className="p-2 space-y-2 w-72 min-w-max">
+                  <Link
+                    href="/main/planning/sales-orders"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/planning/sales-orders"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="file-invoice"
+                      className="text-blue-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Pesanan Penjualan</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/planning/forecasts"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/planning/forecasts"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="chart-line"
+                      className="text-green-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Peramalan</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/planning/mrp"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/planning/mrp"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="cog"
+                      className="text-yellow-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Perencanaan Material</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/planning/crp"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/planning/crp"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="industry"
+                      className="text-purple-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Perencanaan Kapasitas</span>
+                    )}
+                  </Link>
+                </div>
+              </PopoverPanel>
+            </Popover>
           </div>
 
           <div className="space-y-2">
-            <div
-              className={`font-bold text-blue-700 py-3 border-b border-blue-200/50 flex items-center gap-2 transition-all duration-300 ${
-                sidebarMinimized ? "text-xs justify-center" : ""
-              }`}
-            >
-              <FontAwesomeIcon
-                icon="rocket"
-                className="text-base text-blue-600"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
+            <Popover className="relative">
+              <PopoverButton
+                className={`w-full md:flex hidden items-center gap-2 font-bold text-blue-700 py-3 border-b border-blue-200/50 transition-all duration-300 ${
+                  sidebarMinimized ? "text-xs justify-center" : ""
                 }`}
               >
-                Eksekusi & Kontrol
-              </span>
-            </div>
-            <Link
-              href="/main/execution/work-orders"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/execution/work-orders"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="hammer"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-blue-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Perintah Kerja
-              </span>
-            </Link>
-            <Link
-              href="/main/execution/purchase-orders"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/execution/purchase-orders"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="shopping-cart"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-green-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Pesanan Pembelian
-              </span>
-            </Link>
-            <Link
-              href="/main/execution/inventory/transactions"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/execution/inventory/transactions"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="chart-bar"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-yellow-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Transaksi Inventaris
-              </span>
-            </Link>
-            <Link
-              href="/main/execution/inventory/stock-take"
-              className={`group py-2.5 ${
-                sidebarMinimized ? "px-2 justify-center" : "px-4 ml-2"
-              } text-sm rounded-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 relative overflow-hidden ${
-                pathname === "/main/execution/inventory/stock-take"
-                  ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                  : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FontAwesomeIcon
-                icon="boxes"
-                className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
-              />
-              <span
-                className={`transition-all duration-500 ease-in-out relative z-10 ${
-                  sidebarMinimized
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
-                }`}
-              >
-                Stock Take
-              </span>
-            </Link>
+                <FontAwesomeIcon
+                  icon="rocket"
+                  className="text-base text-blue-600"
+                />
+                <span
+                  className={`transition-all duration-500 ease-in-out ${
+                    sidebarMinimized
+                      ? "opacity-0 w-0 overflow-hidden"
+                      : "opacity-100 w-auto"
+                  }`}
+                >
+                  Eksekusi & Kontrol
+                </span>
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="w-5 h-5 text-blue-600"
+                />
+              </PopoverButton>
+              <PopoverPanel className="relative w-full bg-white rounded-xl shadow-lg border border-blue-200 mt-2">
+                <div className="p-2 space-y-2 w-72 min-w-max">
+                  <Link
+                    href="/main/execution/work-orders"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/execution/work-orders"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="hammer"
+                      className="text-blue-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Perintah Kerja</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/execution/purchase-orders"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/execution/purchase-orders"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="shopping-cart"
+                      className="text-green-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Pesanan Pembelian</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/execution/inventory/transactions"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/execution/inventory/transactions"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="chart-bar"
+                      className="text-yellow-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Transaksi Inventaris</span>
+                    )}
+                  </Link>
+                  <Link
+                    href="/main/execution/inventory/stock-take"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
+                      pathname === "/main/execution/inventory/stock-take"
+                        ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                        : "text-gray-700"
+                    }`}
+                    style={{ minHeight: "40px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon="boxes"
+                      className="text-purple-500 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {!sidebarMinimized && (
+                      <span className="truncate">Stock Take</span>
+                    )}
+                  </Link>
+                </div>
+              </PopoverPanel>
+            </Popover>
           </div>
           {user && (
             <div
@@ -866,80 +793,94 @@ export default function MainLayout({
                     </Link>
                   </div>
                 </div>
+
                 <div>
-                  <div className="text-xs font-bold text-blue-700 uppercase mb-3 tracking-wide flex items-center gap-2">
-                    <FontAwesomeIcon
-                      icon="rocket"
-                      className="text-lg text-blue-700"
-                    />
+                  <FontAwesomeIcon
+                    icon="rocket"
+                    className="text-base text-blue-600"
+                  />
+                  <span
+                    className={`transition-all duration-500 ease-in-out ${
+                      sidebarMinimized
+                        ? "opacity-0 w-0 overflow-hidden"
+                        : "opacity-100 w-auto"
+                    }`}
+                  >
                     Eksekusi & Kontrol
-                  </div>
-                  <div className="space-y-2 ml-2">
+                  </span>
+
+                  <div className="p-2 space-y-2 w-72 min-w-max">
                     <Link
                       href="/main/execution/work-orders"
-                      className={`group flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 relative overflow-hidden ${
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
                         pathname === "/main/execution/work-orders"
-                          ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                          : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent text-gray-700"
+                          ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                          : "text-gray-700"
                       }`}
+                      style={{ minHeight: "40px" }}
                       onClick={() => setSidebarOpen(false)}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <FontAwesomeIcon
                         icon="hammer"
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
+                        className="text-blue-500 transition-transform duration-300 group-hover:scale-110"
                       />
-                      <span className="relative z-10">Perintah Kerja</span>
+                      {!sidebarMinimized && (
+                        <span className="truncate">Perintah Kerja</span>
+                      )}
                     </Link>
                     <Link
                       href="/main/execution/purchase-orders"
-                      className={`group flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 relative overflow-hidden ${
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
                         pathname === "/main/execution/purchase-orders"
-                          ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                          : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent text-gray-700"
+                          ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                          : "text-gray-700"
                       }`}
+                      style={{ minHeight: "40px" }}
                       onClick={() => setSidebarOpen(false)}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <FontAwesomeIcon
                         icon="shopping-cart"
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
+                        className="text-green-500 transition-transform duration-300 group-hover:scale-110"
                       />
-                      <span className="relative z-10">Pesanan Pembelian</span>
+                      {!sidebarMinimized && (
+                        <span className="truncate">Pesanan Pembelian</span>
+                      )}
                     </Link>
                     <Link
                       href="/main/execution/inventory/transactions"
-                      className={`group flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 relative overflow-hidden ${
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
                         pathname === "/main/execution/inventory/transactions"
-                          ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                          : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent text-gray-700"
+                          ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                          : "text-gray-700"
                       }`}
+                      style={{ minHeight: "40px" }}
                       onClick={() => setSidebarOpen(false)}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <FontAwesomeIcon
                         icon="chart-bar"
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
+                        className="text-yellow-500 transition-transform duration-300 group-hover:scale-110"
                       />
-                      <span className="relative z-10">
-                        Transaksi Inventaris
-                      </span>
+                      {!sidebarMinimized && (
+                        <span className="truncate">Transaksi Inventaris</span>
+                      )}
                     </Link>
                     <Link
                       href="/main/execution/inventory/stock-take"
-                      className={`group flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 relative overflow-hidden ${
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ease-in-out duration-500 hover:bg-blue-50 ${
                         pathname === "/main/execution/inventory/stock-take"
-                          ? "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold shadow-sm border border-blue-200"
-                          : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent text-gray-700"
+                          ? "bg-blue-100 text-blue-700 font-bold border border-blue-200"
+                          : "text-gray-700"
                       }`}
+                      style={{ minHeight: "40px" }}
                       onClick={() => setSidebarOpen(false)}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <FontAwesomeIcon
-                        icon="clipboard-list"
-                        className="text-sm transition-transform duration-300 group-hover:scale-110 relative z-10 text-purple-500"
+                        icon="boxes"
+                        className="text-purple-500 transition-transform duration-300 group-hover:scale-110"
                       />
-                      <span className="relative z-10">Stock Take</span>
+                      {!sidebarMinimized && (
+                        <span className="truncate">Stock Take</span>
+                      )}
                     </Link>
                   </div>
                 </div>

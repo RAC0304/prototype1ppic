@@ -57,10 +57,10 @@ export default function MaterialsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="space-y-6 p-6 mx-auto">
+      <div>
         <div className="mb-2">
-          <h1 className="text-2xl font-bold text-gray-800">
+          <h1 className="text-2xl font-extrabold text-gray-800">
             Manajemen Bahan Baku
           </h1>
         </div>
@@ -72,7 +72,7 @@ export default function MaterialsPage() {
         {/* Panel Filter & Pencarian */}
         <div className="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200">
           <div className="mb-4">
-            <h2 className="text-lg font-semibold text-gray-700">
+            <h2 className="text-lg font-semibold text-700">
               Filter & Pencarian
             </h2>
           </div>
@@ -143,6 +143,23 @@ export default function MaterialsPage() {
                 onClick={handleAddNew}
               >
                 Tambah Material Baru
+              </button>
+              <button className="bg-blue-500 hover:bg-blue-600 transition text-white px-5 py-2 rounded-xl font-bold shadow flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                  />
+                </svg>
+                Download Data Material
               </button>
             </div>
           </div>
@@ -256,7 +273,10 @@ export default function MaterialsPage() {
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white"
                       value={formData.description}
                       onChange={(e) =>
-                        setFormData({ ...formData, description: e.target.value })
+                        setFormData({
+                          ...formData,
+                          description: e.target.value,
+                        })
                       }
                     />
                   </div>

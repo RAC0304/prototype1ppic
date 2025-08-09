@@ -57,10 +57,10 @@ export default function BOMPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="space-y-6 p-6 mx-auto">
+      <div>
         <div className="mb-2">
-          <h1 className="text-2xl font-bold text-gray-800">
+          <h1 className="text-2xl font-extrabold text-gray-800">
             Manajemen Bill of Materials (Struktur Produk)
           </h1>
         </div>
@@ -74,7 +74,7 @@ export default function BOMPage() {
           {/* Panel Kiri: Daftar Produk Jadi */}
           <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200">
             <div className="mb-4">
-              <h2 className="text-lg font-semibold text-gray-700">
+              <h2 className="text-lg font-semibold text-700">
                 Daftar Produk Jadi
               </h2>
             </div>
@@ -94,9 +94,7 @@ export default function BOMPage() {
                   }`}
                   onClick={() => setSelectedParentItem(item)}
                 >
-                  <span className="font-semibold text-gray-700">
-                    {item.name}
-                  </span>
+                  <span className="font-semibold text-700">{item.name}</span>
                   <span className="text-xs text-gray-500 ml-2">
                     ({item.id})
                   </span>

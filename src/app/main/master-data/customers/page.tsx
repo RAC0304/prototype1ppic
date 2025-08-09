@@ -138,9 +138,9 @@ export default function CustomersPage() {
   }
 
   return (
-    <div className="space-y-8 px-2 sm:px-4 md:px-0 max-w-5xl mx-auto">
+    <div className="space-y-6 p-6 mx-auto">
       <div className="mb-2">
-        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight mb-1">
+        <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-1">
           Manajemen Pelanggan
         </h1>
         <p className="text-gray-500 text-base">
@@ -156,7 +156,7 @@ export default function CustomersPage() {
 
       {/* Filter Panel */}
       <div className="bg-gradient-to-br from-blue-50 to-white shadow-lg rounded-xl p-4 sm:p-8 border border-gray-100">
-        <h2 className="text-xl font-semibold mb-6 text-blue-700">
+        <h2 className="text-lg font-semibold text-black-700">
           Filter & Pencarian
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -210,12 +210,31 @@ export default function CustomersPage() {
       {/* Customers Table */}
       <div className="bg-white shadow-xl rounded-xl border border-gray-100 overflow-x-auto">
         <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-          <button
-            onClick={handleAddNew}
-            className="px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
-          >
-            Tambah Pelanggan Baru
-          </button>
+          <div className="flex flex-wrap gap-3 justify-end items-center w-full">
+            <button
+              onClick={handleAddNew}
+              className="px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
+            >
+              Tambah Pelanggan Baru
+            </button>
+            <button className="bg-blue-500 hover:bg-blue-600 transition text-white px-5 py-2 rounded-xl font-bold shadow flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                />
+              </svg>
+              Download Data Pelanggan
+            </button>
+          </div>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 text-xs sm:text-sm">
